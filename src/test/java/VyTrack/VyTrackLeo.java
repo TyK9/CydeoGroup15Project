@@ -7,30 +7,66 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 public class VyTrackLeo {
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         String url = "https://qa2.vytrack.com/user/login";
         driver.get(url);
 
         WebElement findEmail = driver.findElement(By.name("_username"));
-        findEmail.sendKeys("salesmanager144");
+        findEmail.sendKeys("user43");
         WebElement findPassword = driver.findElement(By.name("_password"));
         findPassword.sendKeys("UserUser123" + Keys.ENTER);
 
+        WebElement fleet = driver.findElement(By.xpath("//span[@class='title title-level-1']"));
+        fleet.click();
+        Thread.sleep(1000);
+        WebElement vehicles = driver.findElement(By.xpath("//span[@class='title title-level-2']"));
+        vehicles.click();
+
+        WebElement rightArrow = driver.findElement(By.xpath("//i[@class='fa-chevron-right hide-text']"));
+        rightArrow.click();
+        Thread.sleep(1000);
+        WebElement leftArrow = driver.findElement(By.xpath("//i[@class='fa-chevron-left hide-text']"));
+        leftArrow.click();
+
+        Thread.sleep(1000);
+        List<WebElement> links = driver.findElements(By.xpath("//td[@class='string-cell grid-cell grid-body-cell grid-body-cell-LicensePlate']"));
+        System.out.println("Count = " + links.size());
+        Thread.sleep(1000);
+
+        WebElement random = links.get(new Random().nextInt(links.size()));
+        random.click();
+
+        Thread.sleep(1000);
+
+        WebElement addEvent = driver.findElement(By.xpath("(//a[@href='javascript: void(0);'])[2]"));
+        addEvent.click();
+        Thread.sleep(2000);
+
+        WebElement title = driver.findElement(By.xpath("//input[@name='oro_calendar_event_form[title]']"));
+        title.sendKeys("Test");
         Thread.sleep(1234);
 
-        String expectedMessage = "Dashboard";
-        System.out.println("Expected message: " + expectedMessage);
+        WebElement buttonSave = driver.findElement(By.xpath("//button[@type='submit']"));
+        buttonSave.click();
 
-        WebElement actualMessage = driver.findElement(By.xpath("//h1[@class='oro-subtitle']"));
-        System.out.println("Actual message: " + actualMessage.getText());
-
-        String message = actualMessage.getText();
-
-        System.out.println(message.equals(expectedMessage) ? "Pass" : "Fail");
+        Thread.sleep(2000);
+        WebElement exit = driver.findElement(By.xpath("/div/div[2]/div/div[2]/div[1]/div[1]/div/div[1]/div[3]/div/a"));
+       // WebElement exit = driver.findElement(By.xpath("(//a[@class='dropdown vertical-actions activity-actions']"));
+        //WebElement exit = driver.findElement(By.xpath("(//a[@class='dropdown-toggle activity-item'])[1]"));
+        exit.click();
+        Thread.sleep(2000);
+        WebElement delete = driver.findElement(By.xpath("//a[@class='action item-remove-button']"));
+        delete.click();
 
 
     }
