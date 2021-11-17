@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +29,13 @@ public class VyTrackLeo {
 
         WebElement fleet = driver.findElement(By.xpath("//span[@class='title title-level-1']"));
         fleet.click();
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         WebElement vehicles = driver.findElement(By.xpath("//span[@class='title title-level-2']"));
         vehicles.click();
 
         WebElement rightArrow = driver.findElement(By.xpath("//i[@class='fa-chevron-right hide-text']"));
         rightArrow.click();
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         WebElement leftArrow = driver.findElement(By.xpath("//i[@class='fa-chevron-left hide-text']"));
         leftArrow.click();
 
@@ -60,13 +61,22 @@ public class VyTrackLeo {
         buttonSave.click();
 
         Thread.sleep(2000);
-        WebElement exit = driver.findElement(By.xpath("/div/div[2]/div/div[2]/div[1]/div[1]/div/div[1]/div[3]/div/a"));
-       // WebElement exit = driver.findElement(By.xpath("(//a[@class='dropdown vertical-actions activity-actions']"));
-        //WebElement exit = driver.findElement(By.xpath("(//a[@class='dropdown-toggle activity-item'])[1]"));
-        exit.click();
+        WebElement options = driver.findElement(By.xpath("(//a[@class='dropdown-toggle activity-item'])[1]"));
+        Actions action = new Actions(driver);
+        action.moveToElement(options).perform();
+       // WebElement exit = driver.findElement(By.cssSelector("div[class='dropdown vertical-actions activity-actions']"));
+       // WebElement exit = driver.findElement(By.xpath("/div/div[2]/div/div[2]/div[1]/div[1]/div/div[1]/div[3]/div/a"));
+       // WebElement exit = driver.findElement(By.xpath("(//div[@class='dropdown vertical-actions activity-actions']"));
+      // WebElement exit = driver.findElement(By.xpath("(//a[@class='dropdown-toggle activity-item'])[1]"));
+       // exit.click();
         Thread.sleep(2000);
-        WebElement delete = driver.findElement(By.xpath("//a[@class='action item-remove-button']"));
+        //WebElement delete = driver.findElement(By.xpath("//a[@class='action item-remove-button']"));
+        WebElement delete = driver.findElement(By.cssSelector("a[title='Delete Calendar event']"));
         delete.click();
+
+        Thread.sleep(1000);
+        WebElement yesDelete = driver.findElement(By.xpath("//a[@class='btn ok btn-danger']"));
+        yesDelete.click();
 
 
     }
