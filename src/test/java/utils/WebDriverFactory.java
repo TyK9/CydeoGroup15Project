@@ -23,7 +23,7 @@ public class WebDriverFactory {
                         it will setup firefox driver , and return new FirefoxDriver
 
             EX:
-                Webdriver driver = WebdriverFactory.getDriver("chrome);
+                 WebDriver driver = WebDriverFactory.getDriver("chrome");
                 and use driver as normal
 
          */

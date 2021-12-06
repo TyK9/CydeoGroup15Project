@@ -1,5 +1,4 @@
-/pom.xml
 /.idea/
 *.iml
 out
-
+/target
