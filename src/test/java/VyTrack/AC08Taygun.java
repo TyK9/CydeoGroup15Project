@@ -43,5 +43,11 @@ public class AC08Taygun {
 
         Assert.assertNotNull(settingSectionOnTheRight.findElement(By.cssSelector("a[title='Grid Settings']")),"iT IS NOT ON THE RIGHT");
 
+
+//        WebElement gridSettingBtn = settingSectionOnTheRight.findElement(By.cssSelector("a[title='Grid Settings']")
+//
+//        WebElement btnLabel = driver.findElement(By.cssSelector("div[class='column-manager-title']"));
+//
+//        System.out.println(btnLabel.getText());
     }
 }
