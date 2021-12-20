@@ -1,4 +1,4 @@
-package VyTrack;
+package tests.VyTrack;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;

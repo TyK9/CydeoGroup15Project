@@ -1,4 +1,4 @@
-package NextBaseCRM;
+package tests.NextBaseCRM;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class NextBaseCRMNegativeScenario {
+public class HelpDeskLogin {
 
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
@@ -17,23 +17,28 @@ public class NextBaseCRMNegativeScenario {
         driver.get(url);
 
         WebElement findEmail = driver.findElement(By.name("USER_LOGIN"));
-        findEmail.sendKeys("helpdesk@cybertekschool.com");
+        findEmail.sendKeys("helpdesk29@cybertekschool.com");
         WebElement findPassword = driver.findElement(By.name("USER_PASSWORD"));
-        findPassword.sendKeys("User" + Keys.ENTER);
+        findPassword.sendKeys("UserUser" + Keys.ENTER);
 
         Thread.sleep(2000);
 
+        WebElement profileModule = driver.findElement(By.xpath("//span[@class='user-name']"));
+        String expectedProfile = "helpdesk29@cybertekschool.com";
+        String actualProfile = profileModule.getText();
 
-        String expectedMessage = "Incorrect login or password";
-        System.out.println("Expected message: " + expectedMessage);
 
-        WebElement actualMessage = driver.findElement(By.xpath("//div[@class='errortext']"));
-        System.out.println("Actual message: " + actualMessage.getText());
-        String error = actualMessage.getText();
 
-        System.out.println(error.equals(expectedMessage) ? "PASS" : "FAIL");
+        if (actualProfile.equals(expectedProfile)){
+            System.out.println("Pass: Profile is logged in");
+        }   else {
+            System.out.println("Fail: Profile was not able to login");
+        }
 
-        Thread.sleep(2000);
+
+
+
+
 
     }
 }
