@@ -1,3 +1,5 @@
+package tests;
+
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
